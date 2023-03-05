@@ -1,0 +1,12 @@
+{
+  "reject": [
+    "axios",
+    "usehooks-ts",
+    "react-spinners",
+    "react-loader-spinner",
+    "firebase",
+    "dotenv-webpack",
+    "history",
+    "eslint"
+  ]
+}

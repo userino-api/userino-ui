@@ -1,0 +1,22 @@
+html, body {
+    font-family: "Open Sans";
+}
+
+body {
+    margin: 0;
+}
+
+/* old */
+#app {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: #EDEDED;
+}
+
+#root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+}

@@ -1,0 +1,16 @@
+{
+  "extends": "@zvs001/babel-config/react",
+  "sourceRoot": ".",
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "extensions": [".js", ".ts", ".tsx"],
+        "alias": {
+          "@reducers": "./src/reducers/"
+        }
+      }
+    ],
+    ["@babel/plugin-proposal-decorators", { "legacy": true }]
+  ]
+}

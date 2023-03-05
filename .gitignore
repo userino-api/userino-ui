@@ -1,0 +1,20 @@
+node_modules/
+.idea/
+.tmp/
+build
+public/js/bundle*
+public/css/bundle*
+yarn-error.log
+package-lock.json
+.DS_Store
+
+### Commit specific idea files
+.idea/*
+!.idea/inspectionProfiles
+.idea/inspectionProfiles/*
+!.idea/inspectionProfiles/Project_Default.xml
+.run
+
+.env.local
+
+services

@@ -1,0 +1,19 @@
+{
+  "env": {
+    "browser": true,
+    "jest": true
+  },
+  "extends": [
+    "@octoguild/react"
+  ],
+  "rules": {
+    "no-restricted-globals": "off",
+
+    // tmp
+    "@typescript-eslint/no-unsafe-return": "off",
+    "@typescript-eslint/no-floating-promises": "off"
+  },
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  }
+}

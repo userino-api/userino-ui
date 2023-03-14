@@ -7,7 +7,7 @@ import { BugsnagBuildReporterPlugin } from 'webpack-bugsnag-plugins'
 import packageJson from './package.json'
 
 process.env.CI = ''
-process.env.PORT = '5555'
+process.env.PORT = '5577'
 const env = process.env.APP_ENV || 'development'
 
 const versionSplit = packageJson.version.split('.')

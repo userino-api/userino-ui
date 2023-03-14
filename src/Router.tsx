@@ -12,7 +12,7 @@ function AppRouter() {
       <Routes>
         {/* <Route path="/" element={<App />}> */}
         <Route index element={<Home />} />
-        <Route path={'app/:id'} element={<AppPage />} />
+        <Route path={'app/:id/*'} element={<AppPage />} />
 
         {/* must be public */}
         {/* <Route path={'email/verify/:code'} element={<EmailVerify />} /> */}

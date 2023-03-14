@@ -30,7 +30,6 @@ function RendererActionSplit<
 
   if (isDone) {
     if (_.isFunction(renderSuccess)) return <>{renderSuccess()}</>
-    return null
   }
 
   return <>{render(statuses)}</>

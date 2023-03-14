@@ -9,6 +9,7 @@ interface State {
 export interface ReduxStateApp extends App {
   appClients?: AppClient[]
   access?: AppAccess[]
+  authProviders?: any[]
 }
 
 const initialState: State = {}
@@ -47,6 +48,17 @@ const slice = createSlice({
       }
 
       stateApp.access = list
+    },
+
+    setAuthProviders(state, action: PayloadAction<{ app_id: string; list: ReduxStateApp['authProviders'] }>) {
+      const { app_id, list } = action.payload
+      let stateApp = state[app_id]
+      if (!stateApp) {
+        console.error('No state app.')
+        return
+      }
+
+      stateApp.authProviders = list
     },
   },
 })

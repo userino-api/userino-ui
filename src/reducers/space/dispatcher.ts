@@ -1,4 +1,4 @@
-import adminApi from '../../libs/licence-admin-api'
+import adminApi from '../../libs/userino-admin-api'
 import { DispatcherResponse } from '../../typings/ReduxDispatch'
 import { actions } from './reducer'
 

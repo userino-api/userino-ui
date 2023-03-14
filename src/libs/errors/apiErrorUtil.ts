@@ -19,9 +19,13 @@ export function getRequestInfo(e: AxiosError): {
 }
 
 export function getFormattedApiError(e: AxiosError): string {
-  let errorMessage = e.message
   const { data, status } = getRequestInfo(e)
-  const { customMessage, errorCode }: { customMessage?: string; errorCode?: string } = data || {}
+  const {
+    customMessage,
+    errorCode,
+    error: errorFromData,
+  }: { customMessage?: string; errorCode?: string; error?: string } = data || {}
+  let errorMessage = errorFromData || e.message
 
   if (status) {
     const statusError = getFormattedApiErrorForStatus(status)

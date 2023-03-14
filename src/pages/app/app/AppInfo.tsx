@@ -4,8 +4,9 @@ import { Container, Divider, Typography } from '@mui/material'
 import { ReduxStateApp } from '@reducers/apps/reducer'
 import React from 'react'
 import Moment from 'react-moment'
-import AppAccessList from '../../../components/appAccessList/AppAccessList'
-import AppClientList from '../../../components/appClientList/AppClientList'
+import { Route, Router, Routes } from 'react-router-dom'
+import AuthList from '../auth/AuthList'
+import FirebasePage from '../pages/firebase/FirebasePage'
 
 interface Props {
   app: ReduxStateApp
@@ -31,15 +32,22 @@ function AppInfo(props: Props) {
         />
 
         <div>
-          <div>
-            <Typography>
-              Date created: <Moment format={'LLL'}>{created_at}</Moment>
-            </Typography>
-          </div>
+          <Routes>
+            <Route
+              index
+              element={
+                <div>
+                  <Typography>
+                    Date created: <Moment format={'LLL'}>{created_at}</Moment>
+                  </Typography>
 
-          <AppAccessList app={app} />
+                  <AuthList app={app} />
+                </div>
+              }
+            />
 
-          <AppClientList app={app} />
+            <Route path={'firebase'} element={<FirebasePage app={app} />} />
+          </Routes>
         </div>
       </Container>
     </div>

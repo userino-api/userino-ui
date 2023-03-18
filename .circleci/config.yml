@@ -157,9 +157,9 @@ workflows:
   deployments:
     jobs:
       - setup
-      - testing:
-          requires:
-            - setup
+#      - testing:
+#          requires:
+#            - setup
       - docker-build:
           filters:
             branches:
@@ -167,12 +167,4 @@ workflows:
                 - master
           requires:
             - setup
-            - testing
-
-#      - kubernetes-image-apply:
-#          requires:
-#            - docker-build
-#          filters:
-#            branches:
-#              only:
-#                - master
+#            - testing

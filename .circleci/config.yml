@@ -19,7 +19,6 @@ commands:
       - run:
           name: Setup Environment Variables
           command: |
-            echo "export AWS_DEFAULT_REGION=us-east-2" >> $BASH_ENV;
             echo "export PATH=$(npm bin):$PATH" >> $BASH_ENV;
 
       - run:
@@ -49,18 +48,13 @@ commands:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
       - run:
-          name: Install Global JS Dependencies
-          command: |
-            set +x;
-            npm i -g check-node-version;
-      - run:
           name: Install JS Dependencies
           command: |
-            npm install
+            yarn install
       - save_cache:
           paths:
             - node_modules
-            - package-lock.json
+            - yarn.lock
           key: v1-dependencies-{{ checksum "package.json" }}
 
   use_node:

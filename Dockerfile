@@ -18,7 +18,14 @@ RUN yarn install
 
 RUN npm run build
 
-WORKDIR /home/app/public
-EXPOSE 7301
+# commands to save image space for now
+RUN yarn cache clean
+RUN rm -rf node_modules
+RUN rm -rf src
 
-CMD ["http-server", "index.js"]
+ENV PORT 7300
+
+#WORKDIR /home/app/build
+EXPOSE ${PORT}
+
+CMD ["npm", "run", "serve"]

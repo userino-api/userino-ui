@@ -1,0 +1,6 @@
+version: "3.9"
+services:
+  userino:
+    image: zvsx001/userino-ui
+    ports:
+      - 7300:7300

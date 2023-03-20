@@ -10,6 +10,7 @@
     "build": "craco build",
     "test": "npx jest",
     "eslint": "eslint ./src",
+    "serve": "http-server -a 0.0.0.0 ./build",
     "prepare": "bash ./scripts/post-install.sh"
   },
   "keywords": [],

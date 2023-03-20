@@ -1,13 +1,13 @@
 version: "3.7"
 services:
-  userino-server:
+  userino-ui:
     container_name: userino-ui
     build: .
 #    network_mode: "host"
     ports:
-      - 4001:4001
+      - 7300:7300
     environment:
-      REDIS_HOST: redis://host.docker.internal:6379
+      PORT: 7300
     networks:
       - app-services
 

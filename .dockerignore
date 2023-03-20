@@ -1,11 +1,10 @@
 .git
-#node_modules
+node_modules
 .nyc_output
 mochawesome-report
 npm-debug.log
 sql
 typings
-package-lock.json
 
 docker-compose.yml
 Dockerfile

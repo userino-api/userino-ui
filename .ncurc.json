@@ -6,7 +6,6 @@
     "react-loader-spinner",
     "firebase",
     "dotenv-webpack",
-    "history",
-    "eslint"
+    "history"
   ]
 }

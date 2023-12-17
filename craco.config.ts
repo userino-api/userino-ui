@@ -1,4 +1,4 @@
-import { when, whenDev, whenProd, whenTest, ESLINT_MODES, POSTCSS_MODES, CracoConfig } from '@craco/craco'
+import { CracoConfig } from '@craco/craco'
 import BabelRcPlugin from '@jackwilsdon/craco-use-babelrc'
 import Dotenv from 'dotenv-webpack'
 import moment from 'moment'
@@ -112,43 +112,41 @@ const craco: CracoConfig = {
         'DefinePlugin', // delete default dotenv based on NODE_ENV
       ],
     },
-    configure: {
-      /* Any webpack configuration options: https://webpack.js.org/configuration */
-      stats: {
-        warnings: false,
-      },
-      resolve: {
-        fallback: {
-          // assert: require.resolve('assert'),
-          // crypto: require.resolve('crypto-browserify'),
-          // http: require.resolve('stream-http'),
-          // https: require.resolve('https-browserify'),
-          // os: require.resolve('os-browserify/browser'),
-          // stream: require.resolve('stream-browserify'),
-        },
-      },
+    configure: (webpackConfig) => {
+      // https://webpack.js.org/configuration/devtool/
+      webpackConfig.devtool = process.env.NODE_ENV === 'production' ? 'source-map' : 'eval-cheap-source-map'
+
+      const fileLoaderRule = getFileLoaderRule(webpackConfig.module.rules)
+      if (!fileLoaderRule) {
+        throw new Error('File loader not found')
+      }
+      fileLoaderRule.exclude.push(/\.cjs$/)
+
+      webpackConfig.plugins
+        ?.push
+        // new ModuleFederationPlugin({
+        //   // options' typings in typescript
+        //   // runtime: string | false,
+        //   shared: [
+        //     {
+        //       lodash: {
+        //         singleton: true,
+        //       },
+        //       react: {
+        //         requiredVersion: packageJson.dependencies.react,
+        //         singleton: true,
+        //       },
+        //       'react-dom': {
+        //         requiredVersion: packageJson.dependencies['react-dom'],
+        //         singleton: true,
+        //       },
+        //     },
+        //   ],
+        // }),
+        ()
+
+      return webpackConfig
     },
-    // configure: (webpackConfig) => ({
-    //   ...webpackConfig,
-    //   module: {
-    //     ...webpackConfig.module,
-    //     // @ts-ignore
-    //     rules: webpackConfig.module.rules.map((rule) => {
-    //       // @ts-ignore
-    //       if (!rule.oneOf) return rule
-    //       return {
-    //         // @ts-ignore
-    //         ...rule,
-    //         // @ts-ignore
-    //         oneOf: rule.oneOf.map((ruleObject) => {
-    //           if (!new RegExp(ruleObject.test).test('.ts') || !ruleObject.include) return ruleObject
-    //           console.log(1)
-    //           return { ...ruleObject, include: ruleObject.include.replace('/src', '') }
-    //         }),
-    //       }
-    //     }),
-    //   },
-    // }),
   },
   jest: {
     babel: {
@@ -205,3 +203,18 @@ const craco: CracoConfig = {
 }
 
 export default craco
+
+/** helpers */
+
+function getFileLoaderRule(rules) {
+  for (const rule of rules) {
+    if ('oneOf' in rule) {
+      const found = getFileLoaderRule(rule.oneOf)
+      if (found) {
+        return found
+      }
+    } else if (rule.test === undefined && rule.type === 'asset/resource') {
+      return rule
+    }
+  }
+}

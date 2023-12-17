@@ -1,11 +1,11 @@
-import adminApi from '../../libs/userino-dashboard-api'
 import { DispatcherResponse } from '../../typings/ReduxDispatch'
+import api from './api'
 import { actions } from './reducer'
 
 class Dispatch {
   getApp(id: string): DispatcherResponse {
     return async (dispatch) => {
-      const app = await adminApi.getApp(id)
+      const app = await api.getApp(id)
       if (app) {
         dispatch(actions.setApp(app))
       }
@@ -14,29 +14,15 @@ class Dispatch {
 
   getAppClients(app_id: string): DispatcherResponse {
     return async (dispatch) => {
-      const list = await adminApi.getAppClients(app_id)
+      const list = await api.getAppClients(app_id)
       dispatch(actions.setAppClients({ app_id, list }))
     }
   }
 
-  getAppAccessList(app_id: string): DispatcherResponse {
+  createClient(app_id: string): DispatcherResponse {
     return async (dispatch) => {
-      const list = await adminApi.getAppAccessList(app_id)
-      dispatch(actions.setAppAccessList({ app_id, list }))
-    }
-  }
-
-  createClient(app_id: string, params: { name: string }): DispatcherResponse {
-    return async (dispatch) => {
-      await adminApi.createAppClient(app_id, params)
+      await api.createAppClient(app_id)
       dispatch(this.getAppClients(app_id))
-    }
-  }
-
-  addAccess(app_id: string, params: { name: string; public_key: string }): DispatcherResponse {
-    return async (dispatch) => {
-      await adminApi.createAppAccess(app_id, params)
-      dispatch(this.getAppAccessList(app_id))
     }
   }
 }

@@ -1,5 +1,4 @@
-/** @jsx jsx */
-import { jsx, css } from '@emotion/react'
+import { css } from '@emotion/react'
 import { makeStyles } from '@mui/styles'
 import classNames from 'classnames'
 import React from 'react'

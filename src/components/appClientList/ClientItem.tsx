@@ -1,5 +1,4 @@
-/** @jsx jsx */
-import { jsx, css } from '@emotion/react'
+import { css } from '@emotion/react'
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Grid, Typography } from '@mui/material'

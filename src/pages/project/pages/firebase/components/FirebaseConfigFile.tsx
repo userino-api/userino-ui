@@ -1,5 +1,4 @@
-/** @jsx jsx */
-import { jsx, css } from '@emotion/react'
+import { css } from '@emotion/react'
 import { Typography } from '@mui/material'
 import apiFirebase from '@reducers/projects/api-firebase'
 import React from 'react'

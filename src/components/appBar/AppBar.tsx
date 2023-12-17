@@ -1,5 +1,4 @@
-/** @jsx jsx */
-import { jsx, css } from '@emotion/react'
+import { css } from '@emotion/react'
 import { Grid } from '@mui/material'
 import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'

@@ -1,5 +1,4 @@
-/** @jsx jsx */
-import { jsx, css } from '@emotion/react'
+import { css } from '@emotion/react'
 import { Button, TextField, Typography } from '@mui/material'
 import apiFirebase from '@reducers/projects/api-firebase'
 import _ from 'lodash'

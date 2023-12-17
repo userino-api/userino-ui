@@ -9,9 +9,9 @@ import { useParams } from 'react-router-dom'
 import Loader from '../../components/Loader'
 import AppBar from '../../components/appBar/AppBar'
 import { useAppDispatch, useAppSelector } from '../../libs/redux'
-import AppInfo from './app/AppInfo'
+import ProjectInfo from './project/ProjectInfo'
 
-function AppPage() {
+function ProjectPage() {
   const { id } = useParams<{ id: string }>()
   const { project } = useAppSelector((state) => ({
     project: state.projects[id as string],
@@ -40,10 +40,10 @@ function AppPage() {
             <Loader />
           </Grid>
         )}
-        render={() => <AppInfo app={project} />}
+        render={() => <ProjectInfo project={project} />}
       />
     </div>
   )
 }
 
-export default AppPage
+export default ProjectPage

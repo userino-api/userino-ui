@@ -1,5 +1,4 @@
-/** @jsx jsx */
-import { jsx, css } from '@emotion/react'
+import { css } from '@emotion/react'
 import { Container, Grid, Typography } from '@mui/material'
 import { ReduxState } from '@reducers/index'
 import SpaceDispatcher from '@reducers/space/dispatcher'

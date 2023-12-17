@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "@emotion/react",
     "module": "es2020",
     "target": "esnext",
     "moduleResolution": "node",
@@ -7,7 +9,6 @@
     "resolveJsonModule": true,
     "noEmit": true,
     "strict": true,
-    "jsx": "react",
     "isolatedModules": false,
     "esModuleInterop": true,
     "noImplicitAny": false,

@@ -1,6 +1,6 @@
 import appTypes from '@reducers/app/types'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { App, AppAccess, AppClient } from '../../typings/core'
+import { App,  AppClient } from '../../typings/core'
 
 interface State {
   [key: string]: ReduxStateApp
@@ -8,7 +8,6 @@ interface State {
 
 export interface ReduxStateApp extends App {
   appClients?: AppClient[]
-  access?: AppAccess[]
   authProviders?: any[]
 }
 
@@ -37,17 +36,6 @@ const slice = createSlice({
       }
 
       stateApp.appClients = list
-    },
-
-    setAppAccessList(state, action: PayloadAction<{ app_id: string; list: AppAccess[] }>) {
-      const { app_id, list } = action.payload
-      let stateApp = state[app_id]
-      if (!stateApp) {
-        console.error('No state app.')
-        return
-      }
-
-      stateApp.access = list
     },
   },
 })

@@ -25,7 +25,7 @@ class Dispatch {
   getApps(project_id: string): DispatcherResponse {
     return async (dispatch) => {
       const apps = await api.getApps(project_id)
-      dispatch(actions.setApps(apps))
+      dispatch(actions.setApps({ id: project_id, list: apps }))
     }
   }
 

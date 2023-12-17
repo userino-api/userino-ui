@@ -1,19 +1,20 @@
-/** @jsx jsx */
-import { jsx, css } from '@emotion/react'
+import { css } from '@emotion/react'
 import { Container, Divider, Typography } from '@mui/material'
 import { ReduxStateProject } from '@reducers/projects/reducer'
 import Moment from 'react-moment'
-import { Route, Router, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
+import AppList from '../app-list/AppList'
 import AuthList from '../auth/AuthList'
 import FirebasePage from '../pages/firebase/FirebasePage'
+import AppPage from "../pages/app/AppPage";
 
 interface Props {
-  app: ReduxStateProject
+  project: ReduxStateProject
 }
 
-function AppInfo(props: Props) {
-  const { app } = props
-  const { id, name, created_at } = app
+function ProjectInfo(props: Props) {
+  const { project } = props
+  const { id, name, created_at } = project
 
   return (
     <div
@@ -40,12 +41,15 @@ function AppInfo(props: Props) {
                     Date created: <Moment format={'LLL'}>{created_at}</Moment>
                   </Typography>
 
-                  <AuthList project={app} />
+                  <AuthList project={project} />
+
+                  <AppList project={project} />
                 </div>
               }
             />
 
-            <Route path={'firebase'} element={<FirebasePage app={app} />} />
+            <Route path={'firebase'} element={<FirebasePage app={project} />} />
+            <Route path={'app/:id'} element={<AppPage project={project} />} />
           </Routes>
         </div>
       </Container>
@@ -53,4 +57,4 @@ function AppInfo(props: Props) {
   )
 }
 
-export default AppInfo
+export default ProjectInfo

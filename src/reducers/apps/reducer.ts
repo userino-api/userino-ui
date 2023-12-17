@@ -1,6 +1,6 @@
 import appTypes from '@reducers/app/types'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { App,  AppClient } from '../../typings/core'
+import { App, AppClient } from '../../typings/core'
 
 interface State {
   [key: string]: ReduxStateApp
@@ -16,8 +16,8 @@ const initialState: State = {}
 const slice = createSlice({
   name: 'APPS',
   initialState,
-  extraReducers: {
-    [appTypes.RESET]: () => initialState,
+  extraReducers: (builder) => {
+    builder.addCase(appTypes.RESET, () => initialState)
   },
   reducers: {
     setApp(state, action: PayloadAction<App>) {

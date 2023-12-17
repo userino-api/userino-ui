@@ -3,7 +3,7 @@ import { PersistGate } from 'redux-persist/integration/react'
 import AppContext from './AppContext'
 import Routes from './Router'
 import { BugsnagErrorBoundary } from './libs/bugSnag'
-import store, { persistor } from './store'
+import store, { persistor } from '@reducers/store'
 
 export default function () {
   return (

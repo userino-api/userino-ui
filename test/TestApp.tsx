@@ -6,7 +6,7 @@ import { JssProvider } from 'react-jss'
 import { Provider } from 'react-redux'
 import { BrowserRouter, MemoryRouter } from 'react-router-dom'
 import theme from '../src/app/theme'
-import store from '../src/store'
+import store from '@reducers/store'
 
 const generateClassName = createGenerateClassName()
 const jss = create(jssPreset())

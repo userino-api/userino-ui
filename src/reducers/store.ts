@@ -1,4 +1,4 @@
-import { middleware } from '@reducers/middleware'
+import { middleware } from './middleware'
 import { configureStore, ThunkAction } from '@reduxjs/toolkit'
 import {
   useSelector as useReduxSelector,
@@ -10,8 +10,8 @@ import { Action } from 'redux'
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import { encryptTransform } from 'redux-persist-transform-encrypt'
-import createHash from './libs/crypto/hash'
-import AppReducers from './reducers'
+import createHash from '../libs/crypto/hash'
+import AppReducers from './index'
 
 const storage_k = process.env.STORE_SECRET
 const STORE_SECRET = createHash(storage_k || '')

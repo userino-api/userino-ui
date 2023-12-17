@@ -1,6 +1,5 @@
 import axios from 'axios'
 import config from '../../config'
-import store from '../../store'
 
 const instance = axios.create({
   baseURL: config.api_url,

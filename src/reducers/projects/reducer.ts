@@ -18,8 +18,8 @@ const initialState: State = {}
 const slice = createSlice({
   name: 'PROJECT',
   initialState,
-  extraReducers: {
-    [appTypes.RESET]: () => initialState,
+  extraReducers: (builder) => {
+    builder.addCase(appTypes.RESET, () => initialState)
   },
   reducers: {
     set(state, action: PayloadAction<Project>) {

@@ -1,10 +1,11 @@
 import { css } from '@emotion/react'
 import { Container, Divider, Typography } from '@mui/material'
-import { ReduxStateProject } from '@reducers/projects/reducer'
+import { ReduxStateApp } from '@reducers/apps/reducer'
 import Moment from 'react-moment'
+import AppClients from '../appClients/AppClients'
 
 interface Props {
-  app: ReduxStateProject
+  app: ReduxStateApp
 }
 
 function AppInfo(props: Props) {
@@ -32,6 +33,7 @@ function AppInfo(props: Props) {
               Date created: <Moment format={'LLL'}>{created_at}</Moment>
             </Typography>
 
+            <AppClients app={app} />
             {/* <AuthList project={app} /> */}
 
             {/* <AppList project={app} /> */}

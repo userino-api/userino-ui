@@ -1,6 +1,5 @@
 import { Grid, Typography } from '@mui/material'
-import AppsDispatcher from '@reducers/apps/dispatcher'
-import ProjectDispatcher from '@reducers/projects/dispatcher'
+import AppDispatcher from '@reducers/apps/dispatcher'
 import { ReduxStateProject } from '@reducers/projects/reducer'
 import _ from 'lodash'
 import React from 'react'
@@ -15,35 +14,36 @@ interface Props {
   project: ReduxStateProject
 }
 function AppPage(props: Props) {
-  const params = useParams<{ id: string }>()
-  const { id } = params
-  console.log('params', params)
-  const { project } = useAppSelector((state) => ({
-    app: state.apps[id as string],
+  const { project } = props
+  const params = useParams<{ app_id: string }>()
+  const { app_id } = params
+
+  const { app } = useAppSelector((state) => ({
+    app: state.apps[app_id as string],
   }))
 
   const dispatch = useAppDispatch()
   const fetchApp = useAsyncFetch(async () => {
-    if (!id) return null
-    await dispatch(ProjectDispatcher.getProject(id))
-  }, [id])
+    if (!app_id) return null
+    await dispatch(AppDispatcher.getApp(app_id))
+  }, [app_id])
 
   return (
     <RendererStatusSplit
       statuses={fetchApp}
-      isEmpty={_.isEmpty(project)}
+      isEmpty={_.isEmpty(app)}
       renderError={(error) => (
         <Typography color={'error'} textAlign={'center'}>
           {error}
         </Typography>
       )}
-      renderEmpty={() => <Typography textAlign={'center'}>Project is not found</Typography>}
+      renderEmpty={() => <Typography textAlign={'center'}>App is not found</Typography>}
       renderLoading={() => (
         <Grid container justifyContent={'center'}>
           <Loader />
         </Grid>
       )}
-      render={() => <AppInfo app={project} />}
+      render={() => <AppInfo app={app} />}
     />
   )
 }

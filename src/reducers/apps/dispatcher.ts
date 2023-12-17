@@ -27,5 +27,5 @@ class Dispatch {
   }
 }
 
-const AppsDispatcher = new Dispatch()
-export default AppsDispatcher
+const AppDispatcher = new Dispatch()
+export default AppDispatcher

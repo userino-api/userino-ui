@@ -7,8 +7,8 @@ const initialState: State = {}
 const slice = createSlice({
   name: 'APP',
   initialState,
-  extraReducers: {
-    [appTypes.RESET]: () => initialState,
+  extraReducers: (builder) => {
+    builder.addCase(appTypes.RESET, () => initialState)
   },
   reducers: {},
 })

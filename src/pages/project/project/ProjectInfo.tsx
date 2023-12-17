@@ -5,8 +5,8 @@ import Moment from 'react-moment'
 import { Route, Routes } from 'react-router-dom'
 import AppList from '../app-list/AppList'
 import AuthList from '../auth/AuthList'
+import AppPage from '../pages/app/AppPage'
 import FirebasePage from '../pages/firebase/FirebasePage'
-import AppPage from "../pages/app/AppPage";
 
 interface Props {
   project: ReduxStateProject
@@ -49,7 +49,7 @@ function ProjectInfo(props: Props) {
             />
 
             <Route path={'firebase'} element={<FirebasePage app={project} />} />
-            <Route path={'app/:id'} element={<AppPage project={project} />} />
+            <Route path={'app/:app_id'} element={<AppPage project={project} />} />
           </Routes>
         </div>
       </Container>

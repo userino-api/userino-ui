@@ -1,5 +1,6 @@
 import { Grid, Typography } from '@mui/material'
 import AppsDispatcher from '@reducers/apps/dispatcher'
+import ProjectDispatcher from '@reducers/projects/dispatcher'
 import _ from 'lodash'
 import React from 'react'
 import { useAsyncFetch } from 'react-hooks-async-handlers'
@@ -12,14 +13,14 @@ import AppInfo from './app/AppInfo'
 
 function AppPage() {
   const { id } = useParams<{ id: string }>()
-  const { app } = useAppSelector((state) => ({
-    app: state.apps[id as string],
+  const { project } = useAppSelector((state) => ({
+    project: state.projects[id as string],
   }))
 
   const dispatch = useAppDispatch()
   const fetchApp = useAsyncFetch(async () => {
     if (!id) return null
-    await dispatch(AppsDispatcher.getApp(id))
+    await dispatch(ProjectDispatcher.getProject(id))
   }, [id])
 
   return (
@@ -27,19 +28,19 @@ function AppPage() {
       <AppBar />
       <RendererStatusSplit
         statuses={fetchApp}
-        isEmpty={_.isEmpty(app)}
+        isEmpty={_.isEmpty(project)}
         renderError={(error) => (
           <Typography color={'error'} textAlign={'center'}>
             {error}
           </Typography>
         )}
-        renderEmpty={() => <Typography textAlign={'center'}>App is not found</Typography>}
+        renderEmpty={() => <Typography textAlign={'center'}>Project is not found</Typography>}
         renderLoading={() => (
           <Grid container justifyContent={'center'}>
             <Loader />
           </Grid>
         )}
-        render={() => <AppInfo app={app} />}
+        render={() => <AppInfo app={project} />}
       />
     </div>
   )

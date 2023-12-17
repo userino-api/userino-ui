@@ -11,6 +11,7 @@
     "test": "npx jest",
     "eslint": "eslint ./src",
     "serve": "http-server -a 0.0.0.0 ./build",
+    "forward:api": "ssh -L 7302:localhost:7302 ubuntu@octo -N -v -v",
     "prepare": "bash ./scripts/post-install.sh"
   },
   "keywords": [],

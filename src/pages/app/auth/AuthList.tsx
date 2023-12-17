@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material'
-import { ReduxStateApp } from '@reducers/apps/reducer'
+import { ReduxStateProject } from '@reducers/projects/reducer'
 import _ from 'lodash'
 import React from 'react'
 import RendererStatusSplit from 'react-renderer-status-split'
@@ -8,13 +8,13 @@ import useFetchAuthProviders from '../hooks/useFetchAuthProviders'
 import Firebase from './Firebase/Firebase'
 
 interface Props {
-  app: ReduxStateApp
+  project: ReduxStateProject
 }
 function AuthList(props: Props) {
-  const { app } = props
-  const { authProviders } = app
+  const { project } = props
+  const { authProviders } = project
 
-  const fetchAuthProviders = useFetchAuthProviders(app.id)
+  const fetchAuthProviders = useFetchAuthProviders(project.id)
 
   return (
     <div>
@@ -25,7 +25,7 @@ function AuthList(props: Props) {
         renderLoading={() => <Loader />}
         render={() => (
           <div>
-            <Firebase app={app} />
+            <Firebase project={project} />
           </div>
         )}
       />

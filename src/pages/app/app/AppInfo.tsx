@@ -1,15 +1,14 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/react'
 import { Container, Divider, Typography } from '@mui/material'
-import { ReduxStateApp } from '@reducers/apps/reducer'
-import React from 'react'
+import { ReduxStateProject } from '@reducers/projects/reducer'
 import Moment from 'react-moment'
 import { Route, Router, Routes } from 'react-router-dom'
 import AuthList from '../auth/AuthList'
 import FirebasePage from '../pages/firebase/FirebasePage'
 
 interface Props {
-  app: ReduxStateApp
+  app: ReduxStateProject
 }
 
 function AppInfo(props: Props) {
@@ -23,7 +22,7 @@ function AppInfo(props: Props) {
       `}
     >
       <Container>
-        <Typography variant={'h1'}>App: {name}</Typography>
+        <Typography variant={'h1'}>Project: {name}</Typography>
         <Divider
           css={css`
             background: #ededed;
@@ -41,7 +40,7 @@ function AppInfo(props: Props) {
                     Date created: <Moment format={'LLL'}>{created_at}</Moment>
                   </Typography>
 
-                  <AuthList app={app} />
+                  <AuthList project={app} />
                 </div>
               }
             />

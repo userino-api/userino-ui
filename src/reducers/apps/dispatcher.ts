@@ -1,4 +1,4 @@
-import adminApi from '../../libs/userino-admin-api'
+import adminApi from '../../libs/userino-dashboard-api'
 import { DispatcherResponse } from '../../typings/ReduxDispatch'
 import { actions } from './reducer'
 
@@ -37,32 +37,6 @@ class Dispatch {
     return async (dispatch) => {
       await adminApi.createAppAccess(app_id, params)
       dispatch(this.getAppAccessList(app_id))
-    }
-  }
-
-  getAuthProviders(app_id: string) {
-    return async (dispatch) => {
-      const list = await adminApi.getAppAuthProviders(app_id)
-      dispatch(
-        actions.setAuthProviders({
-          app_id,
-          list,
-        }),
-      )
-    }
-  }
-
-  enableFirebaseApp(app_id: string) {
-    return async (dispatch) => {
-      await adminApi.enableFirebaseApp(app_id)
-      await dispatch(this.getAuthProviders(app_id))
-    }
-  }
-
-  disableFirebaseApp(app_id: string) {
-    return async (dispatch) => {
-      await adminApi.disableFirebaseApp(app_id)
-      await dispatch(this.getAuthProviders(app_id))
     }
   }
 }

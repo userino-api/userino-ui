@@ -1,12 +1,13 @@
 import appTypes from '@reducers/app/types'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { App, AppAccess, AppClient } from '../../typings/core'
+import { App, AppAccess, AppClient, Project } from '../../typings/core'
 
 interface State {
-  [key: string]: ReduxStateApp
+  [key: string]: ReduxStateProject
 }
 
-export interface ReduxStateApp extends App {
+export interface ReduxStateProject extends Project {
+  apps?: App[]
   appClients?: AppClient[]
   access?: AppAccess[]
   authProviders?: any[]
@@ -15,18 +16,31 @@ export interface ReduxStateApp extends App {
 const initialState: State = {}
 
 const slice = createSlice({
-  name: 'APPS',
+  name: 'PROJECT',
   initialState,
   extraReducers: {
     [appTypes.RESET]: () => initialState,
   },
   reducers: {
-    setApp(state, action: PayloadAction<App>) {
+    set(state, action: PayloadAction<Project>) {
       const app = action.payload
       let stateApp = state[app.id]
       stateApp = { ...stateApp, ...app }
       state[app.id] = stateApp
     },
+
+    setApps(state, action: PayloadAction<{ id: string; list: App[] }>) {
+      const { id, list } = action.payload
+      let stateObj = state[id]
+      if (!stateObj) {
+        console.error('No state app.')
+        return
+      }
+
+      stateObj.apps = list
+    },
+
+    // ...
 
     setAppClients(state, action: PayloadAction<{ app_id: string; list: AppClient[] }>) {
       const { app_id, list } = action.payload
@@ -48,6 +62,17 @@ const slice = createSlice({
       }
 
       stateApp.access = list
+    },
+
+    setAuthProviders(state, action: PayloadAction<{ app_id: string; list: ReduxStateApp['authProviders'] }>) {
+      const { app_id, list } = action.payload
+      let stateApp = state[app_id]
+      if (!stateApp) {
+        console.error('No state app.')
+        return
+      }
+
+      stateApp.authProviders = list
     },
   },
 })

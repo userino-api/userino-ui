@@ -7,7 +7,7 @@ import { useAsyncFetch } from 'react-hooks-async-handlers'
 import { useDispatch } from 'react-redux'
 import AppBar from '../../components/appBar/AppBar'
 import { ReduxDispatch } from '../../typings/ReduxDispatch'
-import AppList from '../../components/appList/AppList'
+import ProjectList from '../../components/appList/ProjectList'
 // import { useWallet, UseWalletProvider } from 'use-wallet'
 
 // import { hooks, metaMask } from '../../metaMask'
@@ -29,7 +29,7 @@ function Home() {
     >
       <AppBar />
 
-      <AppList />
+      <ProjectList />
     </Grid>
   )
 }

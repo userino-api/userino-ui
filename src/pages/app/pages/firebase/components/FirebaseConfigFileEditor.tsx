@@ -1,16 +1,18 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/react'
 import { Button, TextField, Typography } from '@mui/material'
-import React, { useMemo, useState } from 'react'
+import apiFirebase from '@reducers/projects/api-firebase'
+import _ from 'lodash'
+import { useMemo, useState } from 'react'
 import { useAsyncHandler } from 'react-hooks-async-handlers'
 import Loader from '../../../../../components/Loader'
 import RendererActionSplit from '../../../../../libs/RendererActionSplit'
-import api from '../../../../../libs/userino-admin-api'
 
 interface Props {
   app_id: string
   configFile: string
 }
+
 function FirebaseConfigFileEditor(props: Props) {
   const { app_id, configFile } = props
   const configPrevRaw = useMemo(() => {
@@ -24,7 +26,7 @@ function FirebaseConfigFileEditor(props: Props) {
     const json = JSON.parse(configRaw)
     // invariant(json.type === 'service_account', 'Seems you are trying to send wrong config.')
     // todo here we can validate important fields
-    await api.saveConfigFile(app_id, { fileRaw: configRaw })
+    await apiFirebase.saveConfigFile(app_id, { fileRaw: configRaw })
   })
 
   const isSaveDisabled = !configRaw || configPrevRaw === configRaw

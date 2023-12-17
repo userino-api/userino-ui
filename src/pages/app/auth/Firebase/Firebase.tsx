@@ -4,6 +4,8 @@ import { faGear } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Grid, Typography } from '@mui/material'
 import { ReduxStateApp } from '@reducers/apps/reducer'
+import { ReduxStateProject } from '@reducers/projects/reducer'
+import _ from 'lodash'
 import React, { useMemo } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import colors from '../../../../app/colors'
@@ -11,12 +13,12 @@ import EnabledStatusIndicator from '../components/EnabledStatusIndicator'
 import icon from './assets/firebase.png'
 
 interface Props {
-  app: ReduxStateApp
+  project: ReduxStateProject
 }
 function Firebase(props: Props) {
-  const { app } = props
+  const { project } = props
   const location = useLocation()
-  const { authProviders } = app
+  const { authProviders } = project
 
   const isEnabled = useMemo(() => {
     const firebaseProvider = _.find(authProviders, (item) => item.key === 'firebase')

@@ -1,16 +1,12 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/react'
-import { faPlusCircle } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Container, Grid, Typography } from '@mui/material'
 import { ReduxState } from '@reducers/index'
 import SpaceDispatcher from '@reducers/space/dispatcher'
 import _ from 'lodash'
-import React from 'react'
 import { useAsyncFetch } from 'react-hooks-async-handlers'
 import { useDispatch, useSelector } from 'react-redux'
 import RendererStatusSplit from 'react-renderer-status-split'
-import colors from '../../app/colors'
 import useModalState from '../../hooks/useModalState'
 import AppCreateModal from '../../modals/AppCreateModal'
 import { ReduxDispatch } from '../../typings/ReduxDispatch'
@@ -18,14 +14,14 @@ import Loader from '../Loader'
 import AddButton from '../buttons/AddButton'
 import AppItem from './AppItem'
 
-function AppList() {
+function ProjectList() {
   const dispatch = useDispatch<ReduxDispatch>()
   const appCreateModalState = useModalState()
   const appFetchAction = useAsyncFetch(async () => {
-    await dispatch(SpaceDispatcher.getApps())
+    await dispatch(SpaceDispatcher.getProjects())
   })
-  const { apps } = useSelector((state: ReduxState) => ({
-    apps: state.space.apps,
+  const { projects } = useSelector((state: ReduxState) => ({
+    projects: state.space.projects,
   }))
 
   return (
@@ -52,7 +48,7 @@ function AppList() {
 
         <RendererStatusSplit
           statuses={appFetchAction}
-          isEmpty={_.isEmpty(apps)}
+          isEmpty={_.isEmpty(projects)}
           renderLoading={() => (
             <Grid container justifyContent={'center'}>
               <Loader />
@@ -61,7 +57,7 @@ function AppList() {
           renderError={(error) => <Typography color={'error'}>{error}</Typography>}
           render={() => (
             <div>
-              {_.map(apps, (app, index) => (
+              {_.map(projects, (app, index) => (
                 <AppItem key={app.id} app={app} index={index} />
               ))}
             </div>
@@ -72,4 +68,4 @@ function AppList() {
   )
 }
 
-export default AppList
+export default ProjectList

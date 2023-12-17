@@ -1,11 +1,11 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/react'
 import { Typography } from '@mui/material'
+import apiFirebase from '@reducers/projects/api-firebase'
 import React from 'react'
 import { useAsyncFetch } from 'react-hooks-async-handlers'
 import RendererStatusSplit from 'react-renderer-status-split'
 import Loader from '../../../../../components/Loader'
-import api from '../../../../../libs/userino-admin-api'
 import FirebaseConfigFileEditor from './FirebaseConfigFileEditor'
 
 interface Props {
@@ -15,7 +15,7 @@ function FirebaseConfigFile(props: Props) {
   const { app_id } = props
 
   const fetchConfigAction = useAsyncFetch(async () => {
-    const data = await api.getConfigFile(app_id)
+    const data = await apiFirebase.getConfigFile(app_id)
     return data
   })
 

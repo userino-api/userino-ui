@@ -2,11 +2,11 @@ import appTypes from '@reducers/app/types'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 interface State {
-  apps: any[]
+  projects: any[]
 }
 
 const initialState: State = {
-  apps: [],
+  projects: [],
 }
 
 const slice = createSlice({
@@ -16,9 +16,9 @@ const slice = createSlice({
     [appTypes.RESET]: () => initialState,
   },
   reducers: {
-    setApps(state, action: PayloadAction<State['apps']>) {
-      const apps = action.payload
-      state.apps = apps
+    setProjects(state, action: PayloadAction<State['projects']>) {
+      const list = action.payload
+      state.projects = list
     },
   },
 })

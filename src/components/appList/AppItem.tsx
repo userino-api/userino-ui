@@ -15,7 +15,7 @@ function AppItem(props: Props) {
   const { id, name } = app
 
   return (
-    <Link to={`/app/${id}`}>
+    <Link to={`/project/${id}`}>
       <div
         key={id}
         css={[

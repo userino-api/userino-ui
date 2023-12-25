@@ -1,6 +1,6 @@
 import { Stack, Typography } from '@mui/material'
-import AppsDispatcher from '@reducers/apps/dispatcher'
-import { ReduxStateApp } from '@reducers/apps/reducer'
+import ProjectDispatcher from '@reducers/projects/dispatcher'
+import { ReduxStateProject } from '@reducers/projects/reducer'
 import React from 'react'
 import { useAsyncHandler } from 'react-hooks-async-handlers'
 import Loader from '../../../../../components/Loader'
@@ -9,19 +9,19 @@ import RendererActionSplit from '../../../../../libs/RendererActionSplit'
 import { useAppDispatch } from '../../../../../libs/redux'
 
 interface Props {
-  app: ReduxStateApp
+  project: ReduxStateProject
   isEnabled: boolean
 }
 
 function FirebaseEnableButton(props: Props) {
-  const { app, isEnabled } = props
+  const { project, isEnabled } = props
 
   const dispatch = useAppDispatch()
   const enableAction = useAsyncHandler(async (isNextEnabled: boolean) => {
     if (isNextEnabled) {
-      await dispatch(AppsDispatcher.enableFirebaseApp(app.id))
+      await dispatch(ProjectDispatcher.enableFirebaseApp(project.id))
     } else {
-      await dispatch(AppsDispatcher.disableFirebaseApp(app.id))
+      await dispatch(ProjectDispatcher.disableFirebaseApp(project.id))
     }
   })
 

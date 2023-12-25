@@ -48,7 +48,7 @@ function ProjectInfo(props: Props) {
               }
             />
 
-            <Route path={'firebase'} element={<FirebasePage app={project} />} />
+            <Route path={'firebase'} element={<FirebasePage project={project} />} />
             <Route path={'app/:app_id'} element={<AppPage project={project} />} />
           </Routes>
         </div>

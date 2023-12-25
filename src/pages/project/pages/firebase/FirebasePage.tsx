@@ -1,21 +1,20 @@
 import { css } from '@emotion/react'
 import { Grid, Typography } from '@mui/material'
-import { ReduxStateApp } from '@reducers/apps/reducer'
-import { ReduxState } from '@reducers/index'
+import { ReduxStateProject } from '@reducers/projects/reducer'
+import _ from 'lodash'
 import React, { useMemo } from 'react'
-import { useSelector } from 'react-redux'
 import useFetchAuthProviders from '../../hooks/useFetchAuthProviders'
 import FirebaseConfigFile from './components/FirebaseConfigFile'
 import FirebaseEnableButton from './components/FirebaseEnableButton'
 
 interface Props {
-  app: ReduxStateApp
+  project: ReduxStateProject
 }
 function FirebasePage(props: Props) {
-  const { app } = props
-  const { authProviders } = app
+  const { project } = props
+  const { authProviders } = project
 
-  useFetchAuthProviders(app.id)
+  useFetchAuthProviders(project.id)
 
   const firebaseProvider = useMemo(() => {
     return _.find(authProviders, (item) => item.key === 'firebase')
@@ -38,12 +37,12 @@ function FirebasePage(props: Props) {
         </Typography>
 
         <div>
-          <FirebaseEnableButton app={app} isEnabled={!!firebaseProvider?.is_enabled} />
+          <FirebaseEnableButton project={project} isEnabled={!!firebaseProvider?.is_enabled} />
         </div>
       </Grid>
 
       <div>
-        <FirebaseConfigFile app_id={app.id} />
+        <FirebaseConfigFile app_id={project.id} />
       </div>
     </div>
   )

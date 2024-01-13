@@ -1,6 +1,6 @@
 import { css } from '@emotion/react'
 import { Button, Grid, TextField, Typography } from '@mui/material'
-import SpaceDispatcher from '@reducers/space/dispatcher'
+import ProjectDispatcher from '@reducers/projects/dispatcher'
 import React, { useState } from 'react'
 import { useAsyncHandler } from 'react-hooks-async-handlers'
 import Loader from '../components/Loader'
@@ -19,7 +19,7 @@ function AppCreateModal(props: Props) {
 
   const dispatch = useAppDispatch()
   const createAction = useAsyncHandler(async () => {
-    await dispatch(SpaceDispatcher.createApp({ name }))
+    await dispatch(ProjectDispatcher.createProject({ name }))
     handleClose()
   })
 

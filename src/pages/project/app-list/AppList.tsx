@@ -28,7 +28,7 @@ function AppList(props: Props) {
 
       <Grid container>
         {_.map(apps, (app) => (
-          <Link to={`${location.pathname}/app/${id}`}>
+          <Link to={`${location.pathname}/app/${app.id}`}>
             <div
               css={css`
                 background: #fff;

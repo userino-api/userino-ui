@@ -1,6 +1,7 @@
 import { css } from '@emotion/react'
 import { Container, Divider, Typography } from '@mui/material'
 import { ReduxStateProject } from '@reducers/projects/reducer'
+import React from 'react'
 import Moment from 'react-moment'
 import { Route, Routes } from 'react-router-dom'
 import AppList from '../app-list/AppList'

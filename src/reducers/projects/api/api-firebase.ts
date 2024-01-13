@@ -1,4 +1,4 @@
-import apiClient from '../../libs/api/apiClient'
+import apiClient from '../../../libs/api/apiClient'
 
 export default {
   async enableFirebaseApp(app_id: string): Promise<any> {

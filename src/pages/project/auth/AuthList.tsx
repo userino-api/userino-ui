@@ -6,6 +6,7 @@ import RendererStatusSplit from 'react-renderer-status-split'
 import Loader from '../../../components/Loader'
 import useFetchAuthProviders from '../hooks/useFetchAuthProviders'
 import Firebase from './Firebase/Firebase'
+import Media from './media/Media'
 
 interface Props {
   project: ReduxStateProject
@@ -26,6 +27,7 @@ function AuthList(props: Props) {
         render={() => (
           <div>
             <Firebase project={project} />
+            <Media project={project} />
           </div>
         )}
       />

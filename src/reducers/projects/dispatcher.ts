@@ -2,7 +2,7 @@ import adminApi from '../../libs/userino-dashboard-api'
 import { DispatcherResponse } from '../../typings/ReduxDispatch'
 import SpaceDispatcher from '../space/dispatcher'
 import api from './api'
-import apiFirebase from './api-firebase'
+import apiFirebase from './api/api-firebase'
 import { actions } from './reducer'
 
 class Dispatch {

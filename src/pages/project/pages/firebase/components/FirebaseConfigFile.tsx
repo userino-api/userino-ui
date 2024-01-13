@@ -1,6 +1,6 @@
 import { css } from '@emotion/react'
 import { Typography } from '@mui/material'
-import apiFirebase from '@reducers/projects/api-firebase'
+import apiFirebase from '@reducers/projects/api/api-firebase'
 import React from 'react'
 import { useAsyncFetch } from 'react-hooks-async-handlers'
 import RendererStatusSplit from 'react-renderer-status-split'

@@ -1,6 +1,7 @@
 import { css } from '@emotion/react'
 import { Container, Divider, Typography } from '@mui/material'
 import { ReduxStateApp } from '@reducers/apps/reducer'
+import React from 'react'
 import Moment from 'react-moment'
 import AppClients from '../appClients/AppClients'
 

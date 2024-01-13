@@ -1,6 +1,6 @@
 import { css } from '@emotion/react'
 import { Button, TextField, Typography } from '@mui/material'
-import apiFirebase from '@reducers/projects/api-firebase'
+import apiFirebase from '@reducers/projects/api/api-firebase'
 import _ from 'lodash'
 import { useMemo, useState } from 'react'
 import { useAsyncHandler } from 'react-hooks-async-handlers'

@@ -48,57 +48,28 @@ function MediaClientModal(props: Props) {
   const isButtonDisabled = !clientId || !clientSecret
 
   return (
-    <ModalStyled
-      isVisible={isVisible}
-      onClose={onClose}
-      showCloseButton
-      css={css`
-        width: 350px;
-      `}
-    >
-      <div>
-        <Typography
-          variant={'h3'}
-          css={css`
-            margin-bottom: 10px;
-          `}
-        >
-          Media client
-        </Typography>
+    <>
+      <ModalStyled
+        isVisible={isVisible}
+        onClose={onClose}
+        showCloseButton
+        css={css`
+          width: 350px;
+        `}
+      >
+        <div>
+          <Typography
+            variant={'h3'}
+            css={css`
+              margin-bottom: 10px;
+            `}
+          >
+            Media client
+          </Typography>
 
-        <RendererStatusSplit
-          statuses={actionFetch}
-          renderLoading={() => (
-            <Grid
-              container
-              justifyContent={'center'}
-              css={css`
-                margin-top: 30px;
-              `}
-            >
-              <Loader />
-            </Grid>
-          )}
-          render={() => (
-            <div>
-              <div>
-                <OutlinedInput
-                  fullWidth
-                  value={clientId}
-                  placeholder={'Client ID'}
-                  onChange={(e) => setClientId(e.target.value)}
-                  css={css`
-                    margin-bottom: 10px;
-                  `}
-                />
-                <OutlinedInput
-                  fullWidth
-                  value={clientSecret}
-                  placeholder={'Client Secret'}
-                  onChange={(e) => setClientSecret(e.target.value)}
-                />
-              </div>
-
+          <RendererStatusSplit
+            statuses={actionFetch}
+            renderLoading={() => (
               <Grid
                 container
                 justifyContent={'center'}
@@ -106,28 +77,59 @@ function MediaClientModal(props: Props) {
                   margin-top: 30px;
                 `}
               >
-                <Button
-                  variant={'contained'}
-                  onClick={handleClickSave}
-                  css={css`
-                    width: 100px;
-                  `}
-                  disabled={isButtonDisabled}
-                >
-                  Save
-                </Button>
+                <Loader />
               </Grid>
-            </div>
-          )}
-        />
-      </div>
+            )}
+            render={() => (
+              <div>
+                <div>
+                  <OutlinedInput
+                    fullWidth
+                    value={clientId}
+                    placeholder={'Client ID'}
+                    onChange={(e) => setClientId(e.target.value)}
+                    css={css`
+                      margin-bottom: 10px;
+                    `}
+                  />
+                  <OutlinedInput
+                    fullWidth
+                    value={clientSecret}
+                    placeholder={'Client Secret'}
+                    onChange={(e) => setClientSecret(e.target.value)}
+                  />
+                </div>
+
+                <Grid
+                  container
+                  justifyContent={'center'}
+                  css={css`
+                    margin-top: 30px;
+                  `}
+                >
+                  <Button
+                    variant={'contained'}
+                    onClick={handleClickSave}
+                    css={css`
+                      width: 100px;
+                    `}
+                    disabled={isButtonDisabled}
+                  >
+                    Save
+                  </Button>
+                </Grid>
+              </div>
+            )}
+          />
+        </div>
+      </ModalStyled>
 
       <Snackbar open={successMessageState.isVisible} autoHideDuration={3000} onClose={successMessageState.onClose}>
         <Alert onClose={successMessageState.onClose} severity="success" sx={{ width: '100%' }}>
           Configuration saved!
         </Alert>
       </Snackbar>
-    </ModalStyled>
+    </>
   )
 }
 

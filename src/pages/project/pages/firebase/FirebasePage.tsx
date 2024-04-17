@@ -1,5 +1,6 @@
 import { css } from '@emotion/react'
 import { Grid, Typography } from '@mui/material'
+import Container from '@mui/material/Container'
 import { ReduxStateProject } from '@reducers/projects/reducer'
 import _ from 'lodash'
 import React, { useMemo } from 'react'
@@ -21,7 +22,7 @@ function FirebasePage(props: Props) {
   }, [authProviders])
 
   return (
-    <div
+    <Container
       css={css`
         padding-bottom: 50px;
       `}
@@ -44,7 +45,7 @@ function FirebasePage(props: Props) {
       <div>
         <FirebaseConfigFile app_id={project.id} />
       </div>
-    </div>
+    </Container>
   )
 }
 

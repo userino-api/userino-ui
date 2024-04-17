@@ -1,6 +1,7 @@
 import appTypes from '@reducers/app/types'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { App, AppClient } from '../../typings/core'
+import _ from 'lodash'
+import { App, AppClient, UserFull } from '../../typings/core'
 
 interface State {
   [key: string]: ReduxStateApp
@@ -9,6 +10,8 @@ interface State {
 export interface ReduxStateApp extends App {
   appClients?: AppClient[]
   authProviders?: any[]
+  users: UserFull[]
+  userCount?: number
 }
 
 const initialState: State = {}
@@ -36,6 +39,40 @@ const slice = createSlice({
       }
 
       stateApp.appClients = list
+    },
+
+    setUserCount(state, action: PayloadAction<{ app_id: string; value: number }>) {
+      const { app_id, value } = action.payload
+      let stateApp = state[app_id]
+      if (!stateApp) {
+        console.error('No state app.')
+        return
+      }
+
+      stateApp.userCount = value
+    },
+
+    setUsers(state, action: PayloadAction<{ app_id: string; list: ReduxStateApp['users'] }>) {
+      const { app_id, list } = action.payload
+      let stateApp = state[app_id]
+      if (!stateApp) {
+        console.error('No state app.')
+        return
+      }
+
+      stateApp.users = list
+    },
+
+    appendUsers(state, action: PayloadAction<{ app_id: string; list: ReduxStateApp['users'] }>) {
+      const { app_id, list } = action.payload
+      let stateApp = state[app_id]
+      if (!stateApp) {
+        console.error('No state app.')
+        return
+      }
+
+      let listCleaned = _.filter(list, (item) => !_.find(stateApp.users, (stateItem) => stateItem.id === item.id))
+      stateApp.users = stateApp.users.concat(listCleaned)
     },
   },
 })

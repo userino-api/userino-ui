@@ -4,6 +4,8 @@ import { ReduxStateApp } from '@reducers/apps/reducer'
 import React from 'react'
 import Moment from 'react-moment'
 import AppClients from '../appClients/AppClients'
+import Users from '../users/Users'
+import AppTabs from './AppTabs'
 
 interface Props {
   app: ReduxStateApp
@@ -34,13 +36,16 @@ function AppInfo(props: Props) {
               Date created: <Moment format={'LLL'}>{created_at}</Moment>
             </Typography>
 
-            <AppClients app={app} />
-            {/* <AuthList project={app} /> */}
-
-            {/* <AppList project={app} /> */}
+            <Divider
+              css={css`
+                margin: 20px 0;
+              `}
+            />
           </div>
         </div>
       </Container>
+
+      <AppTabs app={app} />
     </div>
   )
 }

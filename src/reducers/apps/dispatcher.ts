@@ -25,6 +25,14 @@ class Dispatch {
       dispatch(this.getAppClients(app_id))
     }
   }
+
+  getUsers(app_id: string): DispatcherResponse {
+    return async (dispatch) => {
+      const { users, total } = await api.getUsers(app_id)
+      dispatch(actions.setUserCount({ app_id, value: total }))
+      dispatch(actions.setUsers({ app_id, list: users }))
+    }
+  }
 }
 
 const AppDispatcher = new Dispatch()

@@ -25,35 +25,36 @@ function ProjectInfo(props: Props) {
     >
       <Container>
         <Typography variant={'h1'}>Project: {name}</Typography>
+
         <Divider
           css={css`
             background: #ededed;
             margin: 20px 0;
           `}
         />
-
-        <div>
-          <Routes>
-            <Route
-              index
-              element={
-                <div>
-                  <Typography>
-                    Date created: <Moment format={'LLL'}>{created_at}</Moment>
-                  </Typography>
-
-                  <AuthList project={project} />
-
-                  <AppList project={project} />
-                </div>
-              }
-            />
-
-            <Route path={'firebase'} element={<FirebasePage project={project} />} />
-            <Route path={'app/:app_id'} element={<AppPage project={project} />} />
-          </Routes>
-        </div>
       </Container>
+
+      <div>
+        <Routes>
+          <Route
+            index
+            element={
+              <Container>
+                <Typography>
+                  Date created: <Moment format={'LLL'}>{created_at}</Moment>
+                </Typography>
+
+                <AuthList project={project} />
+
+                <AppList project={project} />
+              </Container>
+            }
+          />
+
+          <Route path={'firebase'} element={<FirebasePage project={project} />} />
+          <Route path={'app/:app_id'} element={<AppPage project={project} />} />
+        </Routes>
+      </div>
     </div>
   )
 }

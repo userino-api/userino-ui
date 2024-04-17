@@ -30,11 +30,7 @@ function AppClients(props: Props) {
   })
 
   return (
-    <div
-      css={css`
-        margin-top: 20px;
-      `}
-    >
+    <div>
       <Grid container alignItems={'center'} justifyContent={'space-between'}>
         <Typography variant={'h2'}>App api clients</Typography>
 

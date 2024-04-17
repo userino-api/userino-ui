@@ -15,4 +15,8 @@ export default {
     const { data } = await apiClient.post(`/app/${app_id}/app-client/create`)
     return data
   },
+  async getUsers(app_id: string) {
+    const { data } = await apiClient.get(`/app/${app_id}/users`)
+    return data
+  },
 }
